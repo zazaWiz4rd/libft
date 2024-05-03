@@ -1,0 +1,30 @@
+#include "libft.h"
+
+
+int ft_atoi(const char *num)
+{
+int i;
+int nbr;
+int sign;
+
+
+sign = 1;
+nbr = 0;
+i = 0;
+while (num[i] == ' ' || num[i] == '\t' || num[i] == '\n'
+|| num[i] == '\r' || num[i] == '\f' || num[i] == '\v')
+i++;
+if (num[i] == '+')
+i++;
+else if (num[i] == '-')
+{
+sign = -1;
+i++;
+}
+while (ft_isdigit(num[i]))
+{
+nbr = nbr * 10 + (num[i] - '0');
+i++;
+}
+return (nbr * sign);
+}
