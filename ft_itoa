@@ -1,8 +1,6 @@
 #include "libft.h"
 
 
-
-
 static int get_num_digits(long int n)
 {
 int i;
