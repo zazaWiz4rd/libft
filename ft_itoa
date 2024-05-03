@@ -1,0 +1,66 @@
+#include "libft.h"
+
+
+
+
+static int get_num_digits(long int n)
+{
+int i;
+
+
+if (n < 0)
+i = 2;
+else
+i = 1;
+if (n == 0)
+return (2);
+while (n != 0)
+{
+n = n / 10;
+i++;
+}
+return (i);
+}
+
+
+static void ft_putnbr_opium(int n, int aux, char *s)
+{
+int nbr;
+char c;
+int i;
+int null;
+
+
+null = aux;
+i = 0;
+nbr = n;
+if (nbr < 0)
+s[0] = '-';
+if (nbr / 10 != 0)
+{
+if (nbr < 0)
+ft_putnbr_opium((nbr / 10) * -1, aux - 1, s);
+else
+ft_putnbr_opium(nbr / 10, aux - 1, s);
+}
+if (nbr < 0)
+c = (((nbr % 10) * -1) + '0');
+else
+c = (nbr % 10 + '0');
+s[aux] = c;
+if (aux == null)
+s[aux + 1] = '\0';
+}
+
+
+char *ft_itoa(int n)
+{
+char *str;
+
+
+str = (char *)malloc(get_num_digits(n) * sizeof(char));
+if (!str)
+return (NULL);
+ft_putnbr_opium(n, get_num_digits(n) - 2, str);
+return (str);
+}
